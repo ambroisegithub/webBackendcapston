@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'litleLemonApi1',
         'USER':'root',
-        'PASSWORD':'',
+        'PASSWORD':'litleLemonApi123',
         'HOST':'127.0.0.1',
         'PORT':'3306',
     }
