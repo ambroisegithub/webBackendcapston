@@ -1,0 +1,207 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Menu</title>
+</head>
+<style>
+    body {
+        min-height: 100%;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .section {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .menu div {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+
+    .menu h1 {
+        font-size: 45px;
+        font-weight: bold;
+    }
+
+    .menu div a {
+        text-decoration: none;
+        color: #eb83e4;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        padding-top: 5px;
+        /* text-align: center; */
+    }
+
+    .container {
+        /* background-color: skyblue; */
+        width: 100%;
+        height: 140px;
+        text-align: center;
+    }
+
+    .little {
+        color: #617a68;
+        letter-spacing: 2px;
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+    .menu {
+        /* background-color: skyblue; */
+        width: 15%;
+        height: auto;
+        margin-left: 23px;
+    }
+
+    .message {
+        margin-top: 10px;
+        padding: 10px;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .success {
+        background-color: #32cd32;
+    }
+
+    .error {
+        background-color: #ff0000;
+    }
+
+
+    form input{
+   padding:10px;
+    }
+    form #email{
+      width:196px;
+    }
+    form select{
+padding:5px;
+width:218px;
+    }
+    form button{
+padding:8px;
+color:white;
+background-color:#617a68;
+width:220px;
+border:none;
+border-radius:3px;
+font-size:17px;
+font-weight:800;
+    }
+    form{
+      margin-left:25px;
+    }
+     .h1{
+      margin-left:20px;
+      font-weight:900;
+      font-size:50px;
+    }
+.section{
+  display:flex;
+  flex-direction:row;
+  gap:60px;
+}
+</style>
+<body>
+<main>
+    {% block content %}
+    {% comment %} <div class="container"><img src="../static/litlelemon1.png" alt="Logo"></div> {% endcomment %}
+
+    {% include "partials/_header.html" %}
+    <h1 class="h1">User login</h1>
+    <div class="section">
+
+     
+        <form id="login">
+          {% csrf_token %}
+            <label for="firstName">User Name</label><br>
+            <input type="text" id="firstName" name="username" placeholder="your user name">
+            <br><br>
+
+            <label for="password">Enter Your Password:</label><br>
+            <input  type = "password" id="password" name="password"></input>    
+            <br><br>
+
+            <button type="submit">Login</button>
+          </form>
+    </div>
+     
+          <div id="message"></div>
+          
+       
+        
+          <script>
+            // Add an event listener to the login form submit event
+          // Get the CSRF token from the Django template
+var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+// Add an event listener to the login form submit event
+document.getElementById('login').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the form from submitting normally
+
+  // Get form values
+  var username = document.getElementById('firstName').value;
+  var password = document.getElementById('password').value;
+
+  // Prepare data to send
+  var data = {
+    username: username,
+    password: password,
+    csrfmiddlewaretoken: csrfToken // Include the CSRF token in the request data
+  };
+
+  // Make a POST request to the API
+  fetch('http://127.0.0.1:8000/api/login/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken // Include the CSRF token in the request header
+    },
+    body: JSON.stringify(data)
+  })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      if (data.error) {
+        // Display an error message if login is unsuccessful
+        alert(data.error);
+      } else {
+        // Display a success message and redirect if login is successful
+        alert('User logged in successfully.');
+        clearForm();
+      }
+    })
+    .catch(function(error) {
+      console.error('Error:', error);
+    });
+});
+
+function clearForm() {
+  document.getElementById('firstName').value = '';
+  document.getElementById('password').value = '';
+}
+     
+          </script>
+
+    </div>
+
+    {% include "partials/_footer.html" %}
+
+        {% endblock content %}
+
+    </main>
+</body>
+</html>

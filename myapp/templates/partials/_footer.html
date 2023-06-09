@@ -1,0 +1,56 @@
+{% load static %}
+
+<!Doctype html>
+<html len='en'>
+
+<head>
+    <title>footer</title>
+</head>
+
+<style>
+  footer{
+     display:flex;
+    flex-direction:row;
+    gap:10px; 
+    padding-top:10px;
+    padding-left:10px;
+    margin-top: 10px;
+    width:96.7%;
+    height:90px;
+    background-color:#ede8ed;
+    margin-left:20px;
+    {% comment %} margin-right:20px; {% endcomment %}
+  }
+.imagediv{
+    width:47%;
+    height:50px;
+}
+
+.copyright{
+    width:50%;
+    height:60px;
+    {% comment %} background-color:white; {% endcomment %}
+    margin-left:20px;
+}
+.copyright p{
+    padding-left:580px;
+    font-weight:500;
+}
+</style>
+<body>
+    {% block content %}
+    <main>
+<footer>
+<div class="imagediv"> <img src="{% static "litlemon3.png"%}" style="font-size:10px;"></img></div>
+
+<div class="copyright">
+    <hr style="height:1px;color:black;background-color:#465e4f;"></hr>
+                 <p>Copyright Litte Lemon</p>
+</div>
+</footer>
+    </main>
+
+    {% endblock content %} 
+</body>
+
+</html>

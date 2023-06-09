@@ -1,0 +1,527 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Menu</title>
+</head>
+<style>
+    body {
+        min-height: 100%;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .section {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .menu div {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+
+    .menu h1 {
+        font-size: 45px;
+        font-weight: bold;
+    }
+
+    .menu div a {
+        text-decoration: none;
+        color: #eb83e4;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        padding-top: 5px;
+        /* text-align: center; */
+    }
+
+    .container {
+        /* background-color: skyblue; */
+        width: 100%;
+        height: 140px;
+        text-align: center;
+    }
+
+    .little {
+        color: #617a68;
+        letter-spacing: 2px;
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+    .menu {
+        /* background-color: skyblue; */
+        width: 15%;
+        height: auto;
+        margin-left: 23px;
+    }
+
+    .message {
+        margin-top: 10px;
+        padding: 10px;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .success {
+        background-color: #32cd32;
+    }
+
+    .error {
+        background-color: #ff0000;
+    }
+
+
+    form input{
+   padding:10px;
+    }
+    form #reservationDate{
+      width:196px;
+    }
+    form select{
+padding:5px;
+width:218px;
+    }
+    form button{
+padding:8px;
+color:white;
+background-color:#617a68;
+width:220px;
+border:none;
+border-radius:3px;
+font-size:17px;
+font-weight:800;
+    }
+    form{
+      margin-left:25px;
+    }
+     .h1{
+      margin-left:20px;
+      font-weight:900;
+      font-size:50px;
+    }
+.section{
+  display:flex;
+  flex-direction:row;
+  gap:60px;
+}
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+.table {
+  max-width: auto;
+  margin: 50px auto 0;
+  box-shadow: 0 0.15rem 1.75rem rgba(33, 40, 50, 0.15);
+}
+
+.table .top-title {
+  background-color: rgba(33, 40, 50, 0.03);
+  border-bottom: 1px solid rgba(33, 40, 50, 0.03);
+  padding: 1rem 1.35rem;
+}
+
+.top-title h2 {
+  font-size: 16px;
+  color: #0061f2;
+  font-weight: 500;
+}
+
+.wrap-content {
+  padding: 1.2rem;
+}
+
+
+.wrap-title {
+  padding: 10px 0;
+}
+
+.wrap-title .Name,
+.wrap-title .reservationDate,
+.wrap-title .Action,
+.wrap-title .reservationTime {
+  font-size: 16px;
+  font-weight: bold;
+  color: #69707a;
+}
+
+.wrap-title,
+.wrap-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 15fr 25fr 35fr 25fr;
+}
+
+.wrap-title {
+  border-bottom: 1px solid #000;
+}
+
+.wrap-item {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(143, 140, 140, 0.24);
+}
+
+.wrap-item:nth-child(odd) {
+  background-color: #c8cfd842;
+}
+
+.wrap-item .Name {
+  font-size: 16px;
+  color: #69707a;
+  font-weight: bold;
+}
+
+.Name {
+  padding: 0 10px;
+}
+
+.wrap-item .reservationDate,
+.wrap-item .Action,
+.wrap-item .reservationTime {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.reservationDate img {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.wrap-item .reservationDate {
+  display: flex;
+  align-items: center;
+}
+
+.wrap-pagination {
+  display: flex;
+  width: max-content;
+  border: 1px solid #d4dae3;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.wrap-pagination .number {
+  cursor: pointer;
+  width: 20px;
+  border-right: 1px solid #d4dae3;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  justify-content: center;
+}
+
+.wrap-pagination .number:last-child {
+  border-right: none;
+}
+
+.wrap-pagination .number.selected {
+  background-color: #0061f2;
+  color: white;
+}
+
+@media (max-width:767px) {
+  .top-title h2 {
+      font-size: 14px;
+  }
+  .wrap-title .Name,
+  .wrap-title .reservationDate,
+  .wrap-title .Action,
+  .wrap-title .reservationTime,
+  .wrap-item .reservationDate,
+  .wrap-item .Action,
+  .wrap-item .reservationTime,
+  .wrap-item .Name {
+      font-size: 12px;
+  }
+  .wrap-title,
+  .wrap-item {
+      grid-template-columns: 15fr 35fr 25fr 25fr;
+  }
+}
+
+.botton{
+  background-color:#617a68;
+  color:white;
+  border:none;
+  padding:2px;
+  font-size:15px;
+  font-weight:700;
+}
+</style>
+<body>
+<main>
+    {% block content %}
+    <div class="container"><img src="../static/litlelemon1.png" alt="Logo"></div>
+
+    {% include "partials/_header.html" %}
+    <h1 class="h1">Make a reservation</h1>
+    <div class="section">
+
+     
+        <form id="reservationForm">
+            <label for="firstName">Name:</label><br>
+            <input type="text" id="firstName" name="firstName" placeholder="your name">
+            <br><br>
+            <label for="reservationDate">Reservation Date:</label><br>
+            <input type="Date" id="reservationDate" name="reservationDate">
+            <br><br>
+            <label for="reservationSlot">Reservation Time:</label><br>
+            <select  type = "text" id="reservationSlot" name="reservationSlot">         
+                <option value="12 AM">12 AM</option>
+                <option value="1 AM">1 AM</option>
+                <option value="2 AM">2 AM</option>
+                <option value="3 AM">3 AM</option>
+                <option value="4 AM">4 AM</option>
+                <option value="5 AM">5 AM</option>
+                <option value="6 AM">6 AM</option>
+                <option value="7 AM">7 AM</option>
+                <option value="8 AM">8 AM</option>
+                <option value="9 AM">9 AM</option>
+                <option value="10 AM">10 AM</option>
+                <option value="11 AM">11 AM</option>
+                <option value="12 PM">12 PM</option>
+                <option value="1 PM">1 PM</option>
+                <option value="2 PM">2 PM</option>
+                <option value="3 PM">3 PM</option>
+                <option value="4 PM">4 PM</option>
+                <option value="5 PM">5 PM</option>
+                <option value="6 PM">6 PM</option>
+                <option value="7 PM">7 PM</option>
+                <option value="8 PM">8 PM</option>
+                <option value="9 PM">9 PM</option>
+                <option value="10 PM">10 PM</option>
+                <option value="11 PM">11 PM</option>
+             
+            </select>
+            <br><br>
+            <button type="submit">Reserve</button>
+          </form>
+
+
+          <div id="reservationsContainer"> </div> 
+          <div id="bookingInfo"></div>
+{% comment %}          
+            <div class="wrapper">
+              <div class="table">
+
+                  <div class="wrap-content">
+                      <div class="wrap-title">
+                          <div class="Name" id ="Name">
+                              <h4>Name</h4>
+                          </div>
+                          <div class="reservationDate" id= "reservationDate">
+                              <h4>Reservation Data</h4>
+                          </div>
+                          <div class="reservationTime" id="reservationTime">
+                              <h4>Reservation Time</h4>
+                          </div>
+                          <div class="Action" id ="Action">
+                              <h4>Action</h4>
+                          </div>
+                      </div>
+                      <div class="wrap-item">
+                          <div class="Name" id = 'Name'>
+                              <h4 id="name"> </h4>
+                          </div>
+                          <div class="reservationDate" id="reservationDate">
+                              
+                              <h4 id="date"></h4>
+                          </div>
+                          <div class="reservationTime" id="reservationTime"> 
+                              <h4 id="time"></h4>
+                          </div>
+                          <div class="Action" id="Action">
+                             <span> <button class='botton'>Edit</button> &nbsp; &nbsp;<button class='botton'>Delete</button></span>
+                          </div>
+                      </div>
+
+
+                  </div>
+              </div>
+
+          </div> {% endcomment %}
+    </div>
+      
+          <div id="message"></div>
+          
+       
+        
+        <script>
+          // Function to handle form submission
+          document.getElementById("reservationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+        
+            var firstName = document.getElementById("firstName").value;
+            var reservationDate = document.getElementById("reservationDate").value;
+            var reservationSlot = document.getElementById("reservationSlot").value;
+        
+            var bookingInfo = `
+              <h1 style="font-size:20px,font-weight:800,">Booking for ${reservationDate}</h1>
+              <p>${firstName} - &nbsp; ${reservationSlot}</p>
+              <p></p>
+            `;
+        
+            document.getElementById("bookingInfo").innerHTML = bookingInfo;
+        
+            var data = {
+              "first_name": firstName,
+              "reservation_data": reservationDate,
+              "reservation_slot": reservationSlot
+            };
+        
+            // Check if reservation already exists with the same data and slot
+// Check if reservation already exists with the same data and slot
+fetch(`http://127.0.0.1:8000/api/menu-items/?reservation_data=${reservationDate}&reservation_slot=${reservationSlot}`)
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Failed to fetch reservation data.");
+    }
+  })
+  .then(function(reservations) {
+    var existingReservation = reservations.find(function(reservation) {
+      return reservation.reservation_data === reservationDate && reservation.reservation_slot === reservationSlot;
+    });
+
+    if (existingReservation) {
+      alert("Reservation already exists for the same date and slot. Please choose a different slot.");
+    } else {
+      // Create reservation
+      fetch("http://127.0.0.1:8000/api/menu-items/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(function(response) {
+          if (response.ok) {
+            alert("Reservation created successfully!");
+
+            // Reset form fields
+            document.getElementById("firstName").value = "";
+            document.getElementById("reservationDate").value = "";
+            document.getElementById("reservationSlot").value = "";
+          } else {
+            throw new Error("Failed to create reservation.");
+          }
+        })
+        .catch(function(error) {
+          alert("Failed to create reservation. Please try again.");
+        });
+    }
+  })
+  .catch(function(error) {
+    alert("Failed to fetch reservation data. Please try again.");
+  });
+          });
+
+
+
+
+
+          {% comment %} get all {% endcomment %}
+
+
+
+// Function to fetch all menu items and display them
+function fetchMenuItems() {
+  fetch("http://127.0.0.1:8000/api/menu-items/")
+    .then(function(response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to fetch menu items.");
+      }
+    })
+    .then(function(menuItems) {
+      var wrapItemDiv = document.querySelector(".wrap-item");
+
+      // Clear any existing content
+      wrapItemDiv.innerHTML = "";
+
+      // Loop through the menu items and create HTML elements to display them
+      menuItems.forEach(function(menuItem) {
+        var name = menuItem.first_name;
+        var reservationDate = menuItem.reservation_data;
+        var reservationTime = menuItem.reservation_slot;
+
+        var nameHeader = document.createElement("h4");
+        nameHeader.textContent = name;
+
+        var dateHeader = document.createElement("h4");
+        dateHeader.textContent = reservationDate;
+
+        var timeHeader = document.createElement("h4");
+        timeHeader.textContent = reservationTime;
+
+        var nameDiv = document.createElement("div");
+        nameDiv.classList.add("Name");
+        nameDiv.appendChild(nameHeader);
+
+        var dateDiv = document.createElement("div");
+        dateDiv.classList.add("reservationDate");
+        dateDiv.appendChild(dateHeader);
+
+        var timeDiv = document.createElement("div");
+        timeDiv.classList.add("reservationTime");
+        timeDiv.appendChild(timeHeader);
+
+        var actionDiv = document.createElement("div");
+        actionDiv.classList.add("Action");
+        actionDiv.innerHTML = "<span><button class='botton'>Edit</button> &nbsp; &nbsp;<button class='botton'>Delete</button></span>";
+
+        var wrapItem = document.createElement("div");
+        wrapItem.classList.add("wrap-item");
+        wrapItem.appendChild(nameDiv);
+        wrapItem.appendChild(dateDiv);
+        wrapItem.appendChild(timeDiv);
+        wrapItem.appendChild(actionDiv);
+
+        wrapItemDiv.appendChild(wrapItem);
+      });
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+}
+
+// Call the fetchMenuItems function when the page loads
+window.addEventListener("DOMContentLoaded", fetchMenuItems);
+
+
+          
+        </script>
+        
+
+       
+    </div>
+
+        {%  include "partials/_footer.html" %}
+
+        {% endblock content %}
+
+    </main>
+</body>
+</html>

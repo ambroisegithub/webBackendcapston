@@ -1,0 +1,138 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Menu</title>
+</head>
+<style>
+    body {
+        min-height: 100%;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .section {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+  h1{
+    margin-left:20px;
+    font-weight:900;
+    font-size:50px;
+  }
+    .menu div {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+
+    .menu h1 {
+        font-size: 45px;
+        font-weight: bold;
+    }
+
+    .menu div a {
+        text-decoration: none;
+        color: #eb83e4;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        padding-top: 5px;
+        /* text-align: center; */
+    }
+
+    .container {
+        /* background-color: skyblue; */
+        width: 100%;
+        height: 140px;
+        text-align: center;
+    }
+
+    .little {
+        color: #617a68;
+        letter-spacing: 2px;
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+    .menu {
+        /* background-color: skyblue; */
+        width: 15%;
+        height: auto;
+        margin-left: 23px;
+    }
+
+    .message {
+        margin-top: 10px;
+        padding: 10px;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .success {
+        background-color: #32cd32;
+    }
+
+    .error {
+        background-color: #ff0000;
+    }
+    .section{
+        display:flex;
+        flex-direction:row;
+        gap:400px;
+        border:1px solid #617a68;
+        padding:10px;
+        width:95%;
+        margin-left:25px;
+    }
+</style>
+<body>
+<main>
+    {% block content %}
+    <div class="container"><img src="../static/litlelemon1.png" alt="Logo"></div>
+
+    {% include "partials/_header.html" %}
+
+    <h1>All Reservations</h1>
+    <div class="section">
+        <div id="reservationsData"></div> 
+        
+
+            
+        <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d314776.2921177479!2d29.954737013555498!3d-1.923252086738412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca4258ed8e797%3A0xf32b36a5411d0bc8!2sKigali!5e0!3m2!1sen!2srw!4v1685699371047!5m2!1sen!2srw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <script>
+        fetch("http://127.0.0.1:8000/api/menu-items/")
+          .then(function(response) {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("Failed to fetch reservations.");
+            }
+          })
+          .then(function(data) {
+            var reservationsData = document.getElementById("reservationsData");
+            var formattedData = JSON.stringify(data, null, 2);
+            reservationsData.innerText = formattedData;
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      </script>
+
+        {%  include "partials/_footer.html" %}
+
+        {% endblock content %}
+
+    </main>
+</body>
+</html>
